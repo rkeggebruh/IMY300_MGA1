@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxqajw13xkd2"]
+
+[ext_resource type="Texture2D" uid="uid://beedaghjokpgg" path="res://Enjl-Starry Space Background/dinoCharactersVersion1.1/sheets/groun.png" id="1_a3vx2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3femb"]
+size = Vector2(2317, 74.5)
+
+[node name="ground" type="StaticBody2D"]
+
+[node name="JungleTileset" type="Sprite2D" parent="."]
+position = Vector2(1160.06, 155.218)
+scale = Vector2(0.76455, 0.76455)
+texture = ExtResource("1_a3vx2")
+offset = Vector2(0, 552)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1159.5, 614.25)
+shape = SubResource("RectangleShape2D_3femb")
