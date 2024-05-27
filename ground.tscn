@@ -7,7 +7,7 @@ size = Vector2(2317, 74.5)
 
 [node name="ground" type="StaticBody2D"]
 
-[node name="JungleTileset" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1160.06, 155.218)
 scale = Vector2(0.76455, 0.76455)
 texture = ExtResource("1_a3vx2")

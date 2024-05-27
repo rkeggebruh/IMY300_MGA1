@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://c0anud14pbgri" path="res://Enjl-Starry Space Background/dinoCharactersVersion1.1/sheets/man2.png" id="1_fq5kf"]
 
 [node name="man2" type="Area2D"]
+scale = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_fq5kf")
