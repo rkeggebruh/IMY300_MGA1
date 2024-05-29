@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3i642sb5raqw"]
+
+[ext_resource type="Texture2D" uid="uid://c0tmuhxg5fwxb" path="res://longRock.png" id="1_6iryc"]
+
+[node name="longRock" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-35.425, -2.225)
+scale = Vector2(0.0908427, 0.0813448)
+texture = ExtResource("1_6iryc")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-33, -2)
+scale = Vector2(0.187096, 0.176575)
+polygon = PackedVector2Array(-1873, -178, 1898, -195, 1737, 136, -1712, 178)

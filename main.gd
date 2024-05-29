@@ -1,364 +1,6 @@
-#extends Node
-#
-##preload obstacles
-#var man1 = preload("res://man_obstacle.tscn")
-#var man2 = preload("res://man_2.tscn")
-#var man3 = preload("res://man_3.tscn")
-#var spaceShip = preload("res://space_ship.tscn")
-#var obstacle_types := [man1, man2, man3]
-#var obstacles : Array
-#var spaceShip_heights := [200, 390]
-#
-#var floatRock = preload("res://rock.tscn")
-#
-##var score: int
-#const DINO_START_POS := Vector2i(150, 485)
-#const CAM_START_POS := Vector2i(576, 324)
-#const MAX_DIFFICULTY : int = 2
-#var speed: float
-#var difficulty
-#const START_SPEED: float = 4
-#const MAX_SPEED: int = 25
-#const SPEED_MODIFIER : int = 5000
-#var screen_size: Vector2i
-#var game_running : bool
-#var ground_height : int
-#var score : int
-#const SCORE_MODIFIER : int = 10
-#var high_score : int
-#var last_obs
-#
-#var rock
-#
-#
-#func _ready():
-	#print("Ready function is called")  # Debug print
-	#screen_size = get_window().size
-	#ground_height = $ground.get_node("Sprite2D").texture.get_height()
-	#$GameOver.get_node("Button").pressed.connect(new_game)
-	#new_game()
-#
-#func new_game():
-	#
-	#game_running = false
-	#get_tree().paused = false
-	#difficulty = 0
-	## Reset variables
-	#score = 0
-	#show_score()
-	#
-		##delete all obstacles
-	#for obs in obstacles:
-		#obs.queue_free()
-	#obstacles.clear()
-	#
-	## Reset the nodes
-	#$CharacterBody2D.position = DINO_START_POS
-	#$CharacterBody2D.velocity = Vector2i(0, 0)
-	#$Camera2D.position = CAM_START_POS
-	#$ground.position = Vector2i(0, 0)
-	#$scoreHUD.get_node("start").show()
-	#$GameOver.hide()
-#
-#
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#if game_running:
-		#speed = START_SPEED + score / SPEED_MODIFIER
-		#if speed > MAX_SPEED:
-			#speed = MAX_SPEED
-			#
-		#
-		#generate_obs()
-		#
-		#$CharacterBody2D.position.x += speed
-		##$CharacterBody2D.position.y -= 1
-		#$Camera2D.position.x += speed
-		#
-		#score += speed
-		#show_score()
-#
-		## Update ground position
-		#if $Camera2D.position.x - $ground.position.x > screen_size.x * 1.5:
-			#$ground.position.x += screen_size.x
-			#
-		##remove obstacles that have gone off screen
-		#for obs in obstacles:
-			#if obs.position.x < ($Camera2D.position.x - screen_size.x):
-				#remove_obs(obs)
-	#else:
-		#if Input.is_action_pressed("ui_accept"):
-			#game_running = true
-			#$scoreHUD.get_node("start").hide()
-#
-#func show_score():
-	#$scoreHUD.get_node("score").text = "SCORE: " + str(score / SCORE_MODIFIER)
-#
-#
-#func generate_obs():
-	##generate ground obstacles
-	#if obstacles.is_empty() or last_obs.position.x < score + randi_range(300, 500):
-		#var obs_type = obstacle_types[randi() % obstacle_types.size()]
-		#var obs
-		#var max_obs = difficulty + 2
-		#for i in range(randi() % max_obs + 1):
-			#obs = obs_type.instantiate()
-			#var obs_height = obs.get_node("Sprite2D").texture.get_height()
-			#var obs_scale = obs.get_node("Sprite2D").scale
-			#var obs_x : int = screen_size.x + score + 100 + (i * 100)
-			#var obs_y : int = screen_size.y - ground_height - (obs_height * obs_scale.y / 2) + 5
-			#last_obs = obs
-			#add_obs(obs, obs_x, obs_y+330)
-		## for spaceship
-		#if difficulty == MAX_DIFFICULTY:
-			#if (randi() % 2) == 0:
-				#obs = spaceShip.instantiate()
-				#var obs_x : int = screen_size.x + score + 100
-				#var obs_y : int = spaceShip_heights[randi() % spaceShip_heights.size()]
-				#add_obs(obs, obs_x, obs_y)
-	 	#
-		## for ROCK
-		#if difficulty == 0:
-			#rock = floatRock.instantiate()
-			#var rock_x : int = screen_size.x + score + 200  # Adjust rock position as needed
-			#var rock_y : int = screen_size.y - ground_height - 100  # Adjust rock position as needed
-			#add_rock(rock, rock_x, rock_y)
-#
-#
-#func add_obs(obs, x, y):
-	#obs.position = Vector2i(x, y)
-	#obs.body_entered.connect(hit_obs)
-	#add_child(obs)
-	#obstacles.append(obs)
-#
-#func add_rock(rock, x, y):
-	#rock.position = Vector2i(x, y)
-	#rock.get_node("CollisionPolygon2D").disabled = false  # Ensure the collision shape is enabled
-	#rock.body_entered.connect(jump_off_rock)
-	#add_child(rock)
-	#obstacles.append(rock)
-#
-#func remove_obs(obs):
-	#obs.queue_free()
-	#obstacles.erase(obs)
-	#
-#func hit_obs(body):
-	#if body.name == "CharacterBody2D":
-		#game_over()
-#
-#func jump_off_rock(body):
-	##if body.name == "CharacterBody2D":
-		##rock.get_node("CollisionPolygon2D").call_deferred("set_disabled", true) 
-		##$CharacterBody2D.position.y -= 50
-	##rock.get_node("CollisionPolygon2D").disabled = true
-	#while rock.body_entered:
-		#$CharacterBody2D.position.y -= 50
-	#
-		#
-#
-#
-#func check_high_score():
-	#if score > high_score:
-		#high_score = score
-		#$scoreHUD.get_node("HSLabel").text = "HIGH SCORE: " + str(high_score / SCORE_MODIFIER)
-#
-#func adjust_difficulty():
-	#difficulty = score / SPEED_MODIFIER
-	#if difficulty > MAX_DIFFICULTY:
-		#difficulty = MAX_DIFFICULTY
-#
-#func game_over():
-	#check_high_score()
-	#get_tree().paused = true
-	#game_running = false
-	#$GameOver.show()
-
-
-
-
-
-
-
-
-
-
-#
-#extends Node
-#
-## preload obstacles
-#var man1 = preload("res://man_obstacle.tscn")
-#var man2 = preload("res://man_2.tscn")
-#var man3 = preload("res://man_3.tscn")
-#var spaceShip = preload("res://space_ship.tscn")
-#var obstacle_types := [man1, man2, man3]
-#var obstacles : Array = []
-#var spaceShip_heights := [200, 390]
-#
-#var floatRock = preload("res://rock.tscn")
-#
-#const DINO_START_POS := Vector2(150, 485)
-#const CAM_START_POS := Vector2(576, 324)
-#const MAX_DIFFICULTY : int = 2
-#var speed: float
-#var difficulty
-#const START_SPEED: float = 4
-#const MAX_SPEED: int = 25
-#const SPEED_MODIFIER : int = 5000
-#var screen_size: Vector2
-#var game_running : bool
-#var ground_height : int
-#var score : int
-#const SCORE_MODIFIER : int = 10
-#var high_score : int
-#var last_obs
-#
-#var rock
-#
-#func _ready():
-	#print("Ready function is called")  # Debug print
-	#screen_size = get_window().size
-	#ground_height = $ground.get_node("Sprite2D").texture.get_height()
-	#$GameOver.get_node("Button").pressed.connect(new_game)
-	#new_game()
-#
-#func new_game():
-	#game_running = false
-	#get_tree().paused = false
-	#difficulty = 0
-	## Reset variables
-	#score = 0
-	#show_score()
-	#
-	## delete all obstacles
-	#for obs in obstacles:
-		#obs.queue_free()
-	#obstacles.clear()
-	#
-	## Reset the nodes
-	#$CharacterBody2D.position = DINO_START_POS
-	#$CharacterBody2D.velocity = Vector2.ZERO
-	#$Camera2D.position = CAM_START_POS
-	#$ground.position = Vector2(0, 0)
-	#$scoreHUD.get_node("start").show()
-	#$GameOver.hide()
-#
-## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-	#if game_running:
-		#speed = START_SPEED + score / SPEED_MODIFIER
-		#if speed > MAX_SPEED:
-			#speed = MAX_SPEED
-			#
-		#generate_obs()
-		#
-		#$CharacterBody2D.position.x += speed
-		#$Camera2D.position.x += speed
-		#
-		#score += speed
-		#show_score()
-#
-		## Update ground position
-		#if $Camera2D.position.x - $ground.position.x > screen_size.x * 1.5:
-			#$ground.position.x += screen_size.x
-			#
-		## remove obstacles that have gone off screen
-		#for obs in obstacles:
-			#if obs.position.x < ($Camera2D.position.x - screen_size.x):
-				#remove_obs(obs)
-	#else:
-		#if Input.is_action_pressed("ui_accept"):
-			#game_running = true
-			#$scoreHUD.get_node("start").hide()
-#
-#func show_score():
-	#$scoreHUD.get_node("score").text = "SCORE: " + str(score / SCORE_MODIFIER)
-#
-#func generate_obs():
-	## generate ground obstacles
-	#if obstacles.is_empty() or last_obs.position.x < score + randi_range(300, 500):
-		#var obs_type = obstacle_types[randi() % obstacle_types.size()]
-		#var obs
-		#var max_obs = difficulty + 2
-		#for i in range(randi() % max_obs + 1):
-			#obs = obs_type.instantiate()
-			#var obs_height = obs.get_node("Sprite2D").texture.get_height()
-			#var obs_scale = obs.get_node("Sprite2D").scale
-			#var obs_x : int = screen_size.x + score + 100 + (i * 100)
-			#var obs_y : int = screen_size.y - ground_height - (obs_height * obs_scale.y / 2) + 5
-			#last_obs = obs
-			#add_obs(obs, obs_x, obs_y + 330)
-		#
-		## for spaceship
-		#if difficulty == MAX_DIFFICULTY:
-			#if (randi() % 2) == 0:
-				#obs = spaceShip.instantiate()
-				#var obs_x : int = screen_size.x + score + 100
-				#var obs_y : int = spaceShip_heights[randi() % spaceShip_heights.size()]
-				#add_obs(obs, obs_x, obs_y)
-	 	#
-		## for ROCK
-		#if difficulty == 0:
-			#rock = floatRock.instantiate()
-			#var rock_x : int = screen_size.x + score + 200  # Adjust rock position as needed
-			#var rock_y : int = screen_size.y - ground_height - 100  # Adjust rock position as needed
-			#add_rock(rock, rock_x, rock_y)
-#
-#func add_obs(obs, x, y):
-	#obs.position = Vector2(x, y)
-	#obs.get_node("CollisionPolygon2D").disabled = false  # Ensure the collision shape is enabled
-	##obs.connect("body_entered", self, "hit_obs")
-	#obs.body_entered.connect(hit_obs)
-	##rock.body_entered.connect(jump_off_rock)
-	#add_child(obs)
-	#obstacles.append(obs)
-#
-#func add_rock(rock, x, y):
-	#rock.position = Vector2(x, y)
-	#rock.get_node("CollisionPolygon2D").disabled = false  # Ensure the collision shape is enabled
-	##rock.connect("body_entered", self, "jump_off_rock")
-	#rock.body_entered.connect(jump_off_rock)
-	#add_child(rock)
-	#obstacles.append(rock)
-#
-#func remove_obs(obs):
-	#obs.queue_free()
-	#obstacles.erase(obs)
-#
-#func hit_obs(body):
-	#if body.name == "CharacterBody2D":
-		#game_over()
-#
-#func jump_off_rock(body):
-	#if body.name == "CharacterBody2D":
-		#var rock_polygon = rock.get_node("CollisionPolygon2D").polygon
-		#var rock_height = 0.0
-		#for point in rock_polygon:
-			#if point.y > rock_height:
-				#rock_height = point.y
-		#$CharacterBody2D.position.y = rock.position.y - rock_height
-#
-#func check_high_score():
-	#if score > high_score:
-		#high_score = score
-		#$scoreHUD.get_node("HSLabel").text = "HIGH SCORE: " + str(high_score / SCORE_MODIFIER)
-#
-#func adjust_difficulty():
-	#difficulty = score / SPEED_MODIFIER
-	#if difficulty > MAX_DIFFICULTY:
-		#difficulty = MAX_DIFFICULTY
-#
-#func game_over():
-	#check_high_score()
-	#get_tree().paused = true
-	#game_running = false
-	#$GameOver.show()
-
-
-
-
 extends Node
 
-@onready var hit = $hit
+#@onready var hit = $hit
 @onready var coin = $coin
 
 
@@ -370,7 +12,7 @@ var man3 = preload("res://man_3.tscn")
 var spaceShip = preload("res://ufo.tscn")
 var obstacle_types := [man1, man2, man3]
 var obstacles : Array = []
-var spaceShip_heights := [150, 390]
+var spaceShip_heights := [100, 390]
 var coinCount = 0
 
 var counter = 0
@@ -379,6 +21,7 @@ var counter = 0
 #var rock2 = $rock3
 var rock1 = preload("res://rock_static.tscn")
 var rock2 = preload("res://rock_3.tscn")
+#var rock3 = preload("res://long_rock.tscn")
 var rock3 = preload("res://rock_4.tscn")
 #var rock_types := [$StaticBody2D, $rock3]
 var rocks := [rock1, rock2, rock3]
@@ -392,6 +35,13 @@ var coins := [coin1, coin2, coin3]
 var coinsArr : Array = []
 var last_coin
 var now_coin
+
+var longrk1 = preload("res://long_rock.tscn")
+var longrk2 = preload("res://long_rock.tscn")
+var longrk3 = preload("res://long_rock.tscn")
+var lockRocks := [longrk1, longrk2, longrk3]
+var longRocksArr : Array = []
+var last_longRock
 
 #var floatRock = preload("res://rock.tscn")
 
@@ -411,11 +61,15 @@ const SCORE_MODIFIER : int = 10
 var high_score : int
 var last_obs
 
+@onready var hit = $hit
+
+
 var rockPowerUp = preload("res://rock_pu.tscn")
 var rockPowerUp2 = preload("res://rock_pu.tscn")
 var puA := [rockPowerUp, rockPowerUp2]
 var puArr : Array = []
 var last_pu
+
 
 #var rock
 var on_rock : bool = false  # To track if the character is on the rock
@@ -444,6 +98,21 @@ func new_game():
 		obs.queue_free()
 	obstacles.clear()
 	
+	# delete all coins
+	for coin in coinsArr:
+		coin.queue_free()
+	coinsArr.clear()
+	
+	## delete all rocks
+	#for rock in rocksArr:
+		#rock.queue_free()
+	#rocksArr.clear()
+	
+	# delete all Longrocks
+	for rock in longRocksArr:
+		rock.queue_free()
+	longRocksArr.clear()
+	
 	# Reset the nodes
 	$CharacterBody2D.position = DINO_START_POS
 	$CharacterBody2D.velocity = Vector2i(0, 0)
@@ -461,7 +130,7 @@ func _process(delta):
 		generate_obs()
 		generate_rocks()
 		generate_coins()
-		
+		#generate_rocksPU()
 		generate_PU()
 	
 		
@@ -480,6 +149,23 @@ func _process(delta):
 		for obs in obstacles:
 			if obs.position.x < ($Camera2D.position.x - screen_size.x):
 				remove_obs(obs)
+		
+		## remove rocks that have gone off screen
+		for rock in longRocksArr:
+			if rock.position.x < ($Camera2D.position.x - screen_size.x):
+				rock.queue_free()
+				longRocksArr.erase(rock)
+		
+		## remove rocks that have gone off screen
+		for coin in coinsArr:
+			if coin.position.x < ($Camera2D.position.x - screen_size.x):
+				coin.queue_free()
+				coinsArr.erase(coin)
+				
+		
+		if $CharacterBody2D.position.x < $Camera2D.position.x - screen_size.x / 2:
+			game_over()
+		
 	else:
 		if Input.is_action_pressed("ui_accept"):
 			game_running = true
@@ -502,14 +188,14 @@ func generate_obs():
 			obs = obs_type.instantiate()
 			var obs_height = obs.get_node("Sprite2D").texture.get_height()
 			var obs_scale = obs.get_node("Sprite2D").scale
-			var obs_x : int = screen_size.x + score + 100 + (i * 50)
+			var obs_x : int = screen_size.x + score + 100 + (i * 50) + 540
 			var obs_y : int = screen_size.y - ground_height - (obs_height * obs_scale.y / 2) + 15
 			last_obs = obs
 			#print("------------------ get here ")
 			add_obs(obs, obs_x, obs_y + 330)
 		
 		# for spaceship
-		if score > 9500:
+		if score > 13500:
 			if (randi() % 2) == 0:
 				obs = spaceShip.instantiate()
 				var obs_x : int = screen_size.x + score + 100
@@ -587,8 +273,9 @@ func _on_coin_finished():
 
 
 func add_obs(obs, x, y):
-	#print("------------------ adding obs at y ")
+	#print("------------------ adding obs at y ")s
 	#print(y)
+	#x = x + randi_range(150, 450)
 	obs.position = Vector2i(x, y)
 	obs.get_node("CollisionPolygon2D").disabled = false
 	obs.body_entered.connect(hit_obs)
@@ -598,9 +285,12 @@ func add_obs(obs, x, y):
 
 
 func generate_rocks():
+	#print("in NORMAL rocks")
+	#var rando = randi_range(800, 1300)
+	#if rocksArr.is_empty() or last_rock.position.x < score - rando:
 	#print("score: ")
 	#print(score)
-	if score > 3500:
+	if score > 3600:
 		var rando = randi_range(800, 1300)
 		if rocksArr.is_empty() or last_rock.position.x < score - rando:
 			var rocks = rocks[randi() % rocks.size()]
@@ -625,8 +315,9 @@ func generate_rocks():
 func generate_PU():
 	#print("score: ")
 	#print(score)
-	if score > 7900:
-		var rando = randi_range(1200, 1300)
+#CHANGE LATER
+	if score > 7200:
+		var rando = randi_range(800, 1300)
 		if puArr.is_empty() or last_pu.position.x < score - rando:
 			var puA = puA[randi() % puA.size()]
 			var obs
@@ -635,7 +326,7 @@ func generate_PU():
 				obs = puA.instantiate()
 				var obs_height = 50
 				var obs_scale = 50
-				var obs_x : int = screen_size.x + score - 50
+				var obs_x : int = screen_size.x + score + 950
 				var obs_y
 				if i % 3 == 0:
 					obs_y = screen_size.y - ground_height - 100
@@ -657,36 +348,53 @@ func add_pu(obs, x, y):
 
 func hit_pu(body, obs):
 	obs.hide()
-	generate_rocksPU()
+	generate_rocksPUforNo()
+
+
+func generate_rocksPUforNo():
+	for i in range(0, 3):
+		generate_rocksPU()
 
 
 func generate_rocksPU():
 	print("in rocks PUUUUUUUUUUUUUUUUUUUUUu")
-	#print(score)
-	if score > score + 6000:
-		var rando = randi_range(10, 20)
-		if rocksArr.is_empty() or last_rock.position.x < score - rando:
-			var rocks = rocks[randi() % rocks.size()]
+	if score > 3500:
+		var rando = randi_range(800, 1300)
+		if longRocksArr.is_empty() or last_longRock.position.x < score - rando:
+			var lockRocks = lockRocks[randi() % lockRocks.size()]
 			var obs
 			var max_obs = 1
 			for i in range(randi() % max_obs + 1):
-				obs = rocks.instantiate()
+				obs = lockRocks.instantiate()
 				var obs_height = 50
 				var obs_scale = 50
-				var obs_x : int = screen_size.x + score - 50
+				var obs_x : int = screen_size.x + score + 700
 				var obs_y
 				if i % 3 == 0:
 					obs_y = screen_size.y - ground_height - 100
 				else:
 					obs_y = screen_size.y - ground_height - 50
-				last_rock = obs
-				add_pu(obs, obs_x, obs_y)
+				last_longRock = obs
+				add_Lrock(obs, obs_x, obs_y-200)
+				#add_rocks(obs, obs_x-200, obs_y)
 
+func add_Lrock(obs, x, y):
+	print("add LONG rock func ------------------ at ")
+	print(x)
+	print(y)
+	obs.position = Vector2i(x, y)
+	#add_child(obs)
+	call_deferred("add_child", obs)
+	longRocksArr.append(obs)
+	add_rocks(obs, x-200, y)
 
 func add_rocks(obs, x, y):
-	#print("add rock func ------------------")
+	print("add rock func ------------------")
+	print(x)
+	print(y)
 	obs.position = Vector2i(x, y)
-	add_child(obs)
+	#add_child(obs)
+	call_deferred("add_child", obs)
 	rocksArr.append(obs)
 
 
@@ -699,13 +407,16 @@ func hit_obs(body):
 	if body.name == "CharacterBody2D":
 		print("------------------ character hit an ob ")
 		game_running = false
-		hit.play()
-		
-		#game_over()
+		#hit.play()
+		#$hit.play()
+		#await get_tree().create_timer(1.0).timeout
+		#$hit.play()
+		game_over()
 
-func _on_hit_finished():
-	print("SOUND DONE ")
-	game_over()
+#func _on_hit_finished():
+	#print("SOUND DONE ")
+	##game_over()
+	##$hit.play()
 
 
 func check_high_score():
@@ -719,11 +430,16 @@ func adjust_difficulty():
 		difficulty = MAX_DIFFICULTY
 
 func game_over():
+	$hit.play()
 	check_high_score()
 	get_tree().paused = true
 	game_running = false
 	coinCount = 0
 	$GameOver.show()
+	
+
+
+
 
 
 

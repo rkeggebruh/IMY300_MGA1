@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d2b12trpnoj7i"
+path="res://.godot/imported/5 Minute Countdown Timer with Alarm and Deep Space Ambient Music  Deep Space Galaxy.mp3-2cf547bd7a1c8b8e587f0cae9a3ac611.mp3str"
+
+[deps]
+
+source_file="res://5 Minute Countdown Timer with Alarm and Deep Space Ambient Music  Deep Space Galaxy.mp3"
+dest_files=["res://.godot/imported/5 Minute Countdown Timer with Alarm and Deep Space Ambient Music  Deep Space Galaxy.mp3-2cf547bd7a1c8b8e587f0cae9a3ac611.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
