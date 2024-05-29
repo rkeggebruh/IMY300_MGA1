@@ -1,8 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://unr07jq3s4p1"]
 
-[sub_resource type="SystemFont" id="SystemFont_m2sp2"]
-font_names = PackedStringArray("Bauhaus 93")
-subpixel_positioning = 0
+[ext_resource type="FontFile" uid="uid://hwnb8lnuljwu" path="res://A-Space Regular Demo.otf" id="1_38sd3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ptol5"]
 bg_color = Color(0.164706, 0.215686, 0.278431, 1)
@@ -23,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0.803922, 0.666667, 1)
-theme_override_fonts/font = SubResource("SystemFont_m2sp2")
+theme_override_fonts/font = ExtResource("1_38sd3")
 theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_ptol5")
 text = "Restart"

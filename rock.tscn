@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://gk4bjkvfihvx"]
+
+[ext_resource type="Texture2D" uid="uid://cnhwikevo32y8" path="res://rock1.png" id="1_p0qhw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ul5ip"]
+size = Vector2(257.143, 127.143)
+
+[node name="rock" type="Area2D"]
+scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("1_p0qhw")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-128.571, -44.2857, -101.429, -62.8571, -7.14286, -65.7143, 12.8571, -68.5714, 34.2857, -65.7143, 87.1429, -65.7143, 104.286, -61.4286, 127.143, -55.7143, 125.714, -31.4286, 118.571, 5.71429, 95.7143, 27.1429, 67.1429, 45.7143, 28.5714, 70, -2.85714, 51.4286, -18.5714, 54.2857, -31.4286, 45.7143, -57.1429, 55.7143, -92.8571, 44.2857, -97.1429, 18.5714, -111.429, 7.14286, -124.286, -10, -115.714, -18.5714)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.42858, -2.14286)
+shape = SubResource("RectangleShape2D_ul5ip")

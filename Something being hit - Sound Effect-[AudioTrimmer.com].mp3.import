@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cie0fjxq24d5u"
+path="res://.godot/imported/Something being hit - Sound Effect-[AudioTrimmer.com].mp3-6ba443fc881c846eee7b598f5cbe9984.mp3str"
+
+[deps]
+
+source_file="res://Something being hit - Sound Effect-[AudioTrimmer.com].mp3"
+dest_files=["res://.godot/imported/Something being hit - Sound Effect-[AudioTrimmer.com].mp3-6ba443fc881c846eee7b598f5cbe9984.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

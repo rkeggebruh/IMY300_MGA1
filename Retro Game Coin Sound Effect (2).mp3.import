@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wswmhwjemman"
+path="res://.godot/imported/Retro Game Coin Sound Effect (2).mp3-333a89e51346eeea301f00d25b19be4b.mp3str"
+
+[deps]
+
+source_file="res://Retro Game Coin Sound Effect (2).mp3"
+dest_files=["res://.godot/imported/Retro Game Coin Sound Effect (2).mp3-333a89e51346eeea301f00d25b19be4b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

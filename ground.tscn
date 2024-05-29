@@ -1,18 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxqajw13xkd2"]
 
-[ext_resource type="Texture2D" uid="uid://beedaghjokpgg" path="res://Enjl-Starry Space Background/dinoCharactersVersion1.1/sheets/groun.png" id="1_a3vx2"]
+[ext_resource type="Texture2D" uid="uid://bt3pfepu6jdc7" path="res://newMoonGd.png" id="1_ue4b7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3femb"]
-size = Vector2(2317, 74.5)
+size = Vector2(2303, 74.5)
 
 [node name="ground" type="StaticBody2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1160.06, 155.218)
-scale = Vector2(0.76455, 0.76455)
-texture = ExtResource("1_a3vx2")
+position = Vector2(1151, 437.296)
+scale = Vector2(0.140625, 0.330986)
+texture = ExtResource("1_ue4b7")
 offset = Vector2(0, 552)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1159.5, 614.25)
+position = Vector2(1152.5, 614.25)
 shape = SubResource("RectangleShape2D_3femb")

@@ -1,8 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://deaaraegb0jy"]
 
-[sub_resource type="SystemFont" id="SystemFont_yoje3"]
-font_names = PackedStringArray("Bauhaus 93")
-subpixel_positioning = 0
+[ext_resource type="FontFile" uid="uid://hwnb8lnuljwu" path="res://A-Space Regular Demo.otf" id="1_fbts1"]
 
 [node name="scoreHUD" type="CanvasLayer"]
 
@@ -12,19 +10,19 @@ offset_top = 28.0
 offset_right = 216.0
 offset_bottom = 86.0
 theme_override_colors/font_color = Color(0, 0.870588, 0.745098, 1)
-theme_override_fonts/font = SubResource("SystemFont_yoje3")
-theme_override_font_sizes/font_size = 50
-text = "Score: "
+theme_override_fonts/font = ExtResource("1_fbts1")
+theme_override_font_sizes/font_size = 30
+text = "score: "
 
 [node name="HSLabel" type="Label" parent="."]
 offset_left = 643.0
 offset_top = 22.0
-offset_right = 945.0
+offset_right = 967.0
 offset_bottom = 80.0
 theme_override_colors/font_color = Color(0, 0.870588, 0.745098, 1)
-theme_override_fonts/font = SubResource("SystemFont_yoje3")
-theme_override_font_sizes/font_size = 50
-text = "High Score: "
+theme_override_fonts/font = ExtResource("1_fbts1")
+theme_override_font_sizes/font_size = 30
+text = "high score: "
 
 [node name="start" type="Label" parent="."]
 anchors_preset = 8
@@ -40,6 +38,24 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0.870588, 0.745098, 1)
-theme_override_fonts/font = SubResource("SystemFont_yoje3")
+theme_override_fonts/font = ExtResource("1_fbts1")
 theme_override_font_sizes/font_size = 50
-text = "Press space to play"
+text = "press space to play"
+
+[node name="coins" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -544.0
+offset_top = -256.0
+offset_right = -329.0
+offset_bottom = -198.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.870588, 0.745098, 1)
+theme_override_fonts/font = ExtResource("1_fbts1")
+theme_override_font_sizes/font_size = 30
+text = "Coins: "

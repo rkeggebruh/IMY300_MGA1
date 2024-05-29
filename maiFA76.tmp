@@ -1,0 +1,38 @@
+[gd_scene load_steps=10 format=3 uid="uid://b7u0ots8l44i5"]
+
+[ext_resource type="PackedScene" uid="uid://cuv4tf2husef6" path="res://parallax_background.tscn" id="1_ef6vg"]
+[ext_resource type="Script" path="res://main.gd" id="1_kt2cq"]
+[ext_resource type="PackedScene" uid="uid://dxqajw13xkd2" path="res://ground.tscn" id="2_p52to"]
+[ext_resource type="PackedScene" uid="uid://urhjn3d5lfhc" path="res://character_body_2d.tscn" id="3_50few"]
+[ext_resource type="PackedScene" uid="uid://deaaraegb0jy" path="res://score_hud.tscn" id="5_ok1tx"]
+[ext_resource type="PackedScene" uid="uid://unr07jq3s4p1" path="res://game_over.tscn" id="6_3eyom"]
+[ext_resource type="PackedScene" uid="uid://b7r08qmtkkv4t" path="res://rock_static.tscn" id="7_827kd"]
+[ext_resource type="PackedScene" uid="uid://cjx54xlfgltpt" path="res://rock_3.tscn" id="7_bce5p"]
+[ext_resource type="PackedScene" uid="uid://bqjtei3mktyue" path="res://coin.tscn" id="9_p21eg"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_kt2cq")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("1_ef6vg")]
+
+[node name="ground" parent="." instance=ExtResource("2_p52to")]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_50few")]
+position = Vector2(121, 491)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
+[node name="scoreHUD" parent="." instance=ExtResource("5_ok1tx")]
+
+[node name="GameOver" parent="." instance=ExtResource("6_3eyom")]
+process_mode = 2
+
+[node name="rock3" parent="." instance=ExtResource("7_bce5p")]
+position = Vector2(73, -139)
+
+[node name="StaticBody2D" parent="." instance=ExtResource("7_827kd")]
+position = Vector2(-46, -110)
+
+[node name="coin" parent="." instance=ExtResource("9_p21eg")]
+position = Vector2(-52, -32)

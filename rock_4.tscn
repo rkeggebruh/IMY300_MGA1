@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cws1i85evqad6"]
+
+[ext_resource type="Texture2D" uid="uid://c4s74gdhda62y" path="res://rck4-pixelicious.png" id="1_q7hsq"]
+
+[node name="rock4" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_q7hsq")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-122, -24, -50, 23, -10, 24, 6, 34, 35, 29, 75, 1, 88, 1, 94, -5, 107, -7, 120, -19, 121, -31, 88, -33, 56, -32, -106, -34, -123, -29)

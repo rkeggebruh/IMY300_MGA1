@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://bspa0y2sbrdql"]
+
+[ext_resource type="Texture2D" uid="uid://dpdnnf1ch233o" path="res://Mobile - Metal Slug Attack - Golden Saucer.png" id="1_6br3y"]
+[ext_resource type="Script" path="res://ufo.gd" id="1_g1t4f"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gu4n"]
+atlas = ExtResource("1_6br3y")
+region = Rect2(0, 0, 60, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06608"]
+atlas = ExtResource("1_6br3y")
+region = Rect2(60, 0, 60, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnykp"]
+atlas = ExtResource("1_6br3y")
+region = Rect2(120, 0, 60, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76i66"]
+atlas = ExtResource("1_6br3y")
+region = Rect2(0, 42, 60, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eykhv"]
+atlas = ExtResource("1_6br3y")
+region = Rect2(120, 42, 60, 42)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qg2ys"]
+atlas = ExtResource("1_6br3y")
+region = Rect2(60, 84, 60, 42)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7wchy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gu4n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06608")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnykp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76i66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eykhv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qg2ys")
+}],
+"loop": true,
+"name": &"hover",
+"speed": 5.0
+}]
+
+[node name="ufo" type="Area2D"]
+script = ExtResource("1_g1t4f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_7wchy")
+animation = &"hover"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(1.5, 1.5)
+polygon = PackedVector2Array(2, -13, -8, -7, -10, -1, -23, 8, -12, 18, 18, 17, 29, 9, 16, -1, 13, -10)

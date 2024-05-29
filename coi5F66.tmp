@@ -1,0 +1,84 @@
+[gd_scene load_steps=13 format=3 uid="uid://bqjtei3mktyue"]
+
+[ext_resource type="Texture2D" uid="uid://d1oox66gfgi62" path="res://Mobile - Coin Master - Coin.png" id="1_bgmth"]
+[ext_resource type="Script" path="res://coin.gd" id="2_lyn2x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw1qt"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32ts5"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch5py"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tewwf"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jljwq"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71cw8"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xae4j"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i08xc"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hyoyo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw1qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32ts5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch5py")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tewwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jljwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71cw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xae4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i08xc")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xfs41"]
+size = Vector2(80, 80)
+
+[node name="coin" type="Area2D"]
+script = ExtResource("2_lyn2x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_hyoyo")
+animation = &"spin"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.19209e-07, -1.19209e-07)
+scale = Vector2(0.4, 0.4)
+shape = SubResource("RectangleShape2D_xfs41")

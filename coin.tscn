@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://bqjtei3mktyue"]
+
+[ext_resource type="Texture2D" uid="uid://d1oox66gfgi62" path="res://Mobile - Coin Master - Coin.png" id="1_bgmth"]
+[ext_resource type="Script" path="res://coin.gd" id="2_lyn2x"]
+[ext_resource type="AudioStream" uid="uid://wswmhwjemman" path="res://Retro Game Coin Sound Effect (2).mp3" id="3_cm7gb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kw1qt"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32ts5"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch5py"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tewwf"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jljwq"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71cw8"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xae4j"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i08xc"]
+atlas = ExtResource("1_bgmth")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hyoyo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kw1qt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32ts5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch5py")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tewwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jljwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71cw8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xae4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i08xc")
+}],
+"loop": true,
+"name": &"spin",
+"speed": 5.0
+}]
+
+[node name="coin" type="Area2D"]
+script = ExtResource("2_lyn2x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_hyoyo")
+animation = &"spin"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-16, -11, -19, 1, -17, 8, -15, 10, -11, 15, -5, 18, 4, 19, 11, 15, 17, 9, 19, 2, 18, -6, 14, -13, 8, -18, 2, -19, -7, -18, -13, -14)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_cm7gb")
+volume_db = -10.0
+pitch_scale = 1.2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="child_entered_tree" from="CollisionPolygon2D" to="." method="_on_collision_polygon_2d_child_entered_tree"]
+[connection signal="tree_entered" from="CollisionPolygon2D" to="." method="_on_collision_polygon_2d_tree_entered"]

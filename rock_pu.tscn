@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6sgj1h4myqeg"]
+
+[ext_resource type="Texture2D" uid="uid://qn7alepu8dds" path="res://sprite_sheet.png" id="1_a1eoy"]
+[ext_resource type="Script" path="res://rock_pu.gd" id="1_nvus4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ww5sp"]
+atlas = ExtResource("1_a1eoy")
+region = Rect2(0, 0, 512, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dj74w"]
+atlas = ExtResource("1_a1eoy")
+region = Rect2(0, 272, 512, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nsuy3"]
+atlas = ExtResource("1_a1eoy")
+region = Rect2(512, 0, 512, 272)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo0f2"]
+atlas = ExtResource("1_a1eoy")
+region = Rect2(512, 272, 512, 272)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jsmpo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ww5sp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dj74w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nsuy3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo0f2")
+}],
+"loop": true,
+"name": &"power",
+"speed": 5.0
+}]
+
+[node name="rock_PU" type="Area2D"]
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_nvus4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_jsmpo")
+animation = &"power"
+frame_progress = 0.96269
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(2, -22, -54, -22, -48, 20, -2, 24, 40, 18, 60, -20)
