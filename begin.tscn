@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=3 uid="uid://bw2d6i8elexwq"]
+
+[ext_resource type="Script" path="res://begin.gd" id="1_jjleb"]
+[ext_resource type="PackedScene" uid="uid://dxqajw13xkd2" path="res://ground.tscn" id="1_rnmfm"]
+[ext_resource type="PackedScene" uid="uid://cuv4tf2husef6" path="res://parallax_background.tscn" id="2_3hnbb"]
+[ext_resource type="FontFile" uid="uid://hwnb8lnuljwu" path="res://A-Space Regular Demo.otf" id="3_w0gsb"]
+
+[sub_resource type="Theme" id="Theme_yc0no"]
+
+[node name="begin" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jjleb")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_3hnbb")]
+
+[node name="ground" parent="." instance=ExtResource("1_rnmfm")]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -194.5
+offset_top = -113.5
+offset_right = 194.5
+offset_bottom = -22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.862745, 0.768627, 1)
+theme_override_fonts/font = ExtResource("3_w0gsb")
+theme_override_font_sizes/font_size = 50
+text = "Welcome to"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -290.5
+offset_top = -64.5
+offset_right = 290.5
+offset_bottom = 26.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.862745, 0.768627, 1)
+theme_override_fonts/font = ExtResource("3_w0gsb")
+theme_override_font_sizes/font_size = 80
+text = "Space Dino"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.5
+offset_top = 153.0
+offset_right = 71.5
+offset_bottom = 215.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yc0no")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.247059, 0.933333, 0.984314, 1)
+theme_override_colors/font_hover_color = Color(0, 0.862745, 0.768627, 1)
+theme_override_fonts/font = ExtResource("3_w0gsb")
+theme_override_font_sizes/font_size = 30
+text = "Exit"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.5
+offset_top = 69.0
+offset_right = 71.5
+offset_bottom = 131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_yc0no")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.247059, 0.933333, 0.984314, 1)
+theme_override_colors/font_hover_color = Color(0, 0.862745, 0.768627, 1)
+theme_override_fonts/font = ExtResource("3_w0gsb")
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

@@ -5,6 +5,11 @@ const JUMP_SPEED : int = -1800
 
 @onready var jump = $jump
 
+#func _process(delta):
+	#if Input.is_action_pressed("ui_up"):
+		#print("ui_up is pressed")
+
+
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_select"):
@@ -24,11 +29,19 @@ func _physics_process(delta):
 				#print("down pressed -------------------------------- DOWN")
 				$AnimatedSprite2D.play("duck")
 				$runCol.disabled = true
+				#GRAVITY = 6200
 				#velocity.y += GRAVITY * delta
 			else:
 				$AnimatedSprite2D.play("run")
 	else:
-		$AnimatedSprite2D.play("jump")
-		
+		if Input.is_action_pressed("ui_select"):
+			#jump.play()
+			print("up pressed")
+			$AnimatedSprite2D.play("jump")
+		elif Input.is_action_pressed("ui_down"):
+			print("down pressed in air")
+			var otherGrav = 9000
+			velocity.y += otherGrav * delta
+			
 	move_and_slide()
 	

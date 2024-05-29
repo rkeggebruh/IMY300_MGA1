@@ -12,7 +12,7 @@ var man3 = preload("res://man_3.tscn")
 var spaceShip = preload("res://ufo.tscn")
 var obstacle_types := [man1, man2, man3]
 var obstacles : Array = []
-var spaceShip_heights := [100, 390]
+var spaceShip_heights := [250, 430]
 var coinCount = 0
 
 var counter = 0
@@ -119,9 +119,12 @@ func new_game():
 	$Camera2D.position = CAM_START_POS
 	$ground.position = Vector2i(0, 0)
 	$scoreHUD.get_node("start").show()
+	$scoreHUD.get_node("ops").show()
 	$GameOver.hide()
 
 func _process(delta):
+	if Input.is_action_just_pressed("esc"):
+		get_tree().change_scene_to_file("res://begin.tscn")
 	if game_running:
 		speed = START_SPEED + score / SPEED_MODIFIER
 		if speed > MAX_SPEED:
@@ -170,6 +173,7 @@ func _process(delta):
 		if Input.is_action_pressed("ui_accept"):
 			game_running = true
 			$scoreHUD.get_node("start").hide()
+			$scoreHUD.get_node("ops").hide()
 
 func show_score():
 	$scoreHUD.get_node("score").text = "SCORE: " + str(score / SCORE_MODIFIER)
@@ -300,7 +304,7 @@ func generate_rocks():
 				obs = rocks.instantiate()
 				var obs_height = 50
 				var obs_scale = 50
-				var obs_x : int = screen_size.x + score + 1150
+				var obs_x : int = screen_size.x + score + 1150 + (i*90)
 				var obs_y
 				if i % 3 == 0:
 					obs_y = screen_size.y - ground_height - 100
@@ -326,7 +330,7 @@ func generate_PU():
 				obs = puA.instantiate()
 				var obs_height = 50
 				var obs_scale = 50
-				var obs_x : int = screen_size.x + score + 1850
+				var obs_x : int = screen_size.x + score + 2350
 				var obs_y
 				if i % 3 == 0:
 					obs_y = screen_size.y - ground_height - 100
@@ -368,7 +372,7 @@ func generate_rocksPU():
 				obs = lockRocks.instantiate()
 				var obs_height = 50
 				var obs_scale = 50
-				var obs_x : int = screen_size.x + score + 700
+				var obs_x : int = screen_size.x + score + 800 + (score*1/50)
 				var obs_y
 				if i % 3 == 0:
 					obs_y = screen_size.y - ground_height - 100
@@ -380,7 +384,7 @@ func generate_rocksPU():
 				var rocks = rocks[0]
 				var obsRck = rocks.instantiate()
 				print("adding step up rock")
-				add_rocks(obsRck, obs_x-800, obs_y)
+				add_rocks(obsRck, (obs_x-800-(i*50)), obs_y)
 
 func add_Lrock(obs, x, y):
 	print("add LONG rock func ------------------ at ")
