@@ -300,7 +300,7 @@ func generate_rocks():
 				obs = rocks.instantiate()
 				var obs_height = 50
 				var obs_scale = 50
-				var obs_x : int = screen_size.x + score - 50
+				var obs_x : int = screen_size.x + score + 1150
 				var obs_y
 				if i % 3 == 0:
 					obs_y = screen_size.y - ground_height - 100
@@ -326,7 +326,7 @@ func generate_PU():
 				obs = puA.instantiate()
 				var obs_height = 50
 				var obs_scale = 50
-				var obs_x : int = screen_size.x + score + 950
+				var obs_x : int = screen_size.x + score + 1850
 				var obs_y
 				if i % 3 == 0:
 					obs_y = screen_size.y - ground_height - 100
@@ -377,6 +377,10 @@ func generate_rocksPU():
 				last_longRock = obs
 				add_Lrock(obs, obs_x, obs_y-200)
 				#add_rocks(obs, obs_x-200, obs_y)
+				var rocks = rocks[0]
+				var obsRck = rocks.instantiate()
+				print("adding step up rock")
+				add_rocks(obsRck, obs_x-800, obs_y)
 
 func add_Lrock(obs, x, y):
 	print("add LONG rock func ------------------ at ")
